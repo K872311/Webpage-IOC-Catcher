@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IOC 情报采集器 · 选项</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="head">
+      <h1>IOC 情报采集器</h1>
+      <p class="sub">本地偏好 · 不会上传任何数据</p>
+    </header>
+
+    <section class="card">
+      <h2>扫描</h2>
+      <label class="row">
+        <span>默认模式</span>
+        <select id="defaultMode">
+          <option value="precise">精确</option>
+          <option value="all">全部</option>
+        </select>
+      </label>
+      <label class="check">
+        <input type="checkbox" id="scanFrames" checked />
+        <span>扫描同源 iframe（多 frame 合并）</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" id="retryOnEmpty" checked />
+        <span>空结果时短重试（适配 SPA 懒加载）</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" id="rememberMode" checked />
+        <span>记住弹窗中的查看模式</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" id="autoScrollFeeds" checked />
+        <span>X/Twitter 自动下拉加载更多推文（约 10–20 秒）</span>
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>导出</h2>
+      <label class="row">
+        <span>默认导出格式</span>
+        <select id="defaultExport">
+          <option value="json">JSON</option>
+          <option value="csv">CSV</option>
+          <option value="txt">TXT</option>
+          <option value="stix">STIX 2.1</option>
+          <option value="misp">MISP</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="card">
+      <h2>额外噪音域名</h2>
+      <p class="hint">每行一个主机名；匹配该域及其子域，从结果中排除。</p>
+      <textarea id="extraNoise" rows="8" placeholder="cdn.example.com&#10;tracker.vendor.com"></textarea>
+    </section>
+
+    <footer class="foot">
+      <button type="button" id="btnSave" class="btn primary">保存</button>
+      <span id="status" class="status" role="status"></span>
+    </footer>
+  </main>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+crawlers/hunt.env
+crawlers/hunt_state.json
+crawlers/output/
+*.env
+__pycache__/

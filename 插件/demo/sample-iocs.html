@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>IOC 提取测试页</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; line-height: 1.6; }
+    code, pre { background: #f4f4f4; padding: 2px 6px; border-radius: 4px; }
+    pre { padding: 12px; overflow: auto; }
+    h1 { font-size: 1.4rem; }
+  </style>
+</head>
+<body>
+  <h1>IOC 情报采集器 · 样例页面</h1>
+  <p>安装扩展后打开本页，点击插件弹窗中的「扫描」按钮进行验证。</p>
+
+  <h2>域名 / Defang</h2>
+  <p>
+    恶意域名：evil-malware.com 、
+    defanged：hxxps://bad[.]actor[.]net/path 、
+    普通：github.com
+  </p>
+
+  <h2>IP</h2>
+  <p>IPv4：185.220.101.1 、 8.8.8.8 、 203.0.113.45</p>
+  <p>IPv6：2001:db8:85a3::8a2e:370:7334</p>
+
+  <h2>哈希</h2>
+  <pre>
+MD5:    44d88612fea8a8f36de82e1278abb02f
+SHA1:   da39a3ee5e6b4b0d3255bfef95601890afd80709
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  </pre>
+
+  <h2>URL / 邮箱 / CVE</h2>
+  <p>
+    链接：<a href="https://malware-traffic-analysis.net/">https://malware-traffic-analysis.net/</a><br />
+    邮箱：analyst@threat-intel.example.org（可能被过滤 example） / report@securelist.com<br />
+    CVE：CVE-2024-21412 、 CVE-2021-44228
+  </p>
+
+  <h2>平台链接 / data 属性</h2>
+  <p>
+    <a href="https://www.virustotal.com/gui/domain/evil-c2-sample.net">VT domain</a>
+    <a href="https://www.virustotal.com/gui/ip-address/198.51.100.77">VT IP</a>
+    <a href="https://www.virustotal.com/gui/file/aabbccddeeff00112233445566778899aabbccddeeff00112233445566778899">VT file</a>
+  </p>
+  <p>
+    <a href="https://otx.alienvault.com/indicator/hostname/panel-c2.example-threat.io">OTX host</a>
+    <span class="ioc" data-type="domain" data-ioc="beacon-drop.threat-lab.io">beacon-drop.threat-lab.io</span>
+    <span data-sha256="11223344556677889900aabbccddeeff11223344556677889900aabbccddeeff"></span>
+  </p>
+
+  <h2>Defang 扩展</h2>
+  <p>dot 写法：evil dot actor dot org 、 全角：evil．actor．biz</p>
+
+  <h2>Shadow DOM</h2>
+  <div id="shadow-host"></div>
+  <script>
+    const host = document.getElementById('shadow-host');
+    const root = host.attachShadow({ mode: 'open' });
+    root.innerHTML = '<p>Shadow IOC MD5: <code>abcdef0123456789abcdef0123456789</code> C2: shadow-c2.malware.test</p>';
+  </script>
+</body>
+</html>

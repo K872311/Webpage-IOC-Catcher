@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IOC 情报采集器</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div>
+        <h1>IOC 情报采集器 <span class="ver">v1.4.3</span></h1>
+        <p class="subtitle">域名 · IP · 哈希 · iframe/选区</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button id="btnOptions" class="btn btn-ghost btn-sm" type="button" title="打开选项页">选项</button>
+      <button id="btnScan" class="btn btn-primary" type="button">扫描</button>
+    </div>
+  </header>
+
+  <section id="meta" class="meta hidden">
+    <div class="meta-title" id="pageTitle" title=""></div>
+    <div class="meta-url" id="pageUrl" title=""></div>
+    <div class="meta-stats">
+      <span id="statTotal">0 条</span>
+      <span class="dot">·</span>
+      <span id="statTime">—</span>
+    </div>
+  </section>
+
+  <section class="toolbar">
+    <div class="mode-row">
+      <span class="mode-label">模式</span>
+      <div class="mode-toggle" role="group" aria-label="提取模式">
+        <button id="modePrecise" type="button" class="mode-btn active" title="仅高置信：表格/标签/SHA256字段等">精确</button>
+        <button id="modeAll" type="button" class="mode-btn" title="包含全文正则匹配（可能有误报）">全部</button>
+      </div>
+    </div>
+    <input
+      id="searchInput"
+      class="search"
+      type="search"
+      placeholder="搜索 IOC…"
+      autocomplete="off"
+    />
+    <div id="typeFilters" class="filters" role="group" aria-label="类型筛选"></div>
+  </section>
+
+  <section id="status" class="status" role="status">
+    点击「扫描」提取当前页 IOC（含同源 iframe / Shadow DOM）。
+  </section>
+
+  <section id="list" class="list" aria-live="polite">
+    <div class="welcome" id="welcome">
+      <p class="welcome-title">v1.4.3</p>
+      <ul class="feature-list">
+        <li><strong>精确提取</strong> — Securelist 分节 / 多级云域名 / defang</li>
+        <li><strong>X/Twitter</strong> — 自动下拉采推文 + <code>[.]</code> defang</li>
+        <li><strong>多 frame + Shadow</strong> — 扫描时自动合并</li>
+        <li><strong>右键 / Alt+Shift+I</strong> — 选区或快捷扫描</li>
+        <li><strong>STIX / MISP</strong> — 底部导出格式可选</li>
+        <li><strong>选项</strong> — 噪音域名、默认模式、iframe 开关</li>
+      </ul>
+      <p class="welcome-hint">打开 demo/sample-iocs.html 后点「扫描」可验证。</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-left">
+      <button id="btnCopy" class="btn btn-ghost" type="button" disabled>复制</button>
+      <button id="btnClear" class="btn btn-ghost" type="button" disabled>清空</button>
+    </div>
+    <div class="export-group">
+      <label class="sr-only" for="exportFormat">导出格式</label>
+      <select id="exportFormat" class="select" disabled title="导出格式">
+        <option value="json">JSON</option>
+        <option value="csv">CSV</option>
+        <option value="txt">TXT</option>
+        <option value="stix">STIX 2.1</option>
+        <option value="misp">MISP</option>
+      </select>
+      <button id="btnExport" class="btn btn-secondary" type="button" disabled>导出</button>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast hidden" role="status"></div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
